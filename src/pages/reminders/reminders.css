@@ -1,0 +1,689 @@
+/* =========================================================
+   REMINDERS PAGE
+   ========================================================= */
+
+.reminders-page {
+    max-width: 900px;
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.reminders-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.reminders-header h1 {
+    font-size: 34px;
+}
+
+.back-link {
+    color: var(--gold);
+    font-family: var(--sans);
+    font-size: 32px;
+    line-height: 1;
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--gold-light);
+    transform: translateX(-3px);
+}
+
+.reminders-gold-line {
+    width: 100%;
+    height: 2px;
+    margin-bottom: 48px;
+    background: var(--gold);
+}
+
+/* =========================================================
+   Tabs
+   ========================================================= */
+
+.reminder-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.reminder-tab {
+    min-height: 48px;
+    padding: 0 24px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 15px;
+
+    box-shadow: none;
+}
+
+.reminder-tab:hover {
+    background: var(--surface-hover);
+    box-shadow: none;
+}
+
+.reminder-tab.active {
+    background: var(--gold);
+    color: #171717;
+}
+
+/* =========================================================
+   Section
+   ========================================================= */
+
+.reminders-section {
+    margin-top: 42px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+.reminder-count {
+    min-width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.reminders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* =========================================================
+   Reminder Card
+   ========================================================= */
+
+.reminder-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding-top: 4px;
+}
+
+.reminder-card .client-name {
+    margin-bottom: 2px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 24px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.reminder-card .client-name:hover {
+    color: var(--gold);
+}
+
+/* =========================================================
+   Info Rows
+   ========================================================= */
+
+.reminder-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 18px;
+    text-decoration: none;
+}
+
+a.reminder-info-row:hover {
+    color: var(--gold);
+}
+
+.info-icon {
+    width: 20px;
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    text-align: center;
+    font-size: 15px;
+}
+
+.info-icon img {
+    width: 18px;
+    height: 18px;
+
+    object-fit: contain;
+    display: block;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+/* =========================================================
+   Relative Time
+   ========================================================= */
+
+.reminder-relative {
+    margin-top: 8px;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   Note
+   ========================================================= */
+
+.reminder-note {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    margin-top: 4px;
+
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.detail-label {
+    color: var(--gold);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* =========================================================
+   Status Badges
+   ========================================================= */
+
+.reminder-status-badge {
+    align-self: flex-start;
+
+    display: inline-flex;
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    font-family: var(--heading);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.reminder-status-badge.urgent {
+    background: rgba(216, 181, 47, 0.12);
+    border: 1px solid rgba(216, 181, 47, 0.35);
+    color: var(--gold);
+}
+
+.reminder-status-badge.overdue {
+    background: rgba(180, 70, 60, 0.12);
+    border: 1px solid rgba(180, 70, 60, 0.35);
+    color: #d98b82;
+}
+
+.reminder-status-badge.forgotten {
+    background: rgba(150, 50, 50, 0.18);
+    border: 1px solid rgba(180, 70, 60, 0.45);
+    color: #e28d82;
+}
+
+/* =========================================================
+   Completed Badge
+   ========================================================= */
+
+.completed-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 12px;
+
+    border: 1px solid rgba(180, 180, 180, 0.22);
+    border-radius: 999px;
+
+    background: rgba(120, 120, 120, 0.16);
+    color: #a8a8a8;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.reminder-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 18px;
+}
+
+.contact-client-button,
+.reminder-actions .mark-sent-button {
+    flex: 1;
+
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 0 22px;
+
+    border-radius: 14px;
+
+    font-family: var(--heading);
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+        
+}
+
+/* =========================================================
+   Contact Client
+   ========================================================= */
+
+.contact-client-button {
+    border: 1px solid var(--gold);
+
+    background: var(--gold);
+    color: #171717;
+
+    box-shadow:
+        0 5px 14px rgba(216, 181, 47, 0.18);
+}
+
+.contact-client-button:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   Mark Completed
+   ========================================================= */
+
+.reminder-actions .mark-sent-button {
+    border: 1px solid #3d3d3d;
+
+    background: #242424;
+    color: #f3f3f3;
+
+    box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.25);
+}
+
+.reminder-actions .mark-sent-button:hover:not(:disabled) {
+    background: #383838;
+    border-color: #4a4a4a;
+
+    transform: translateY(-1px);
+}
+
+.reminder-actions .mark-sent-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.mark-sent-icon {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   Confirmation Modal
+   ========================================================= */
+
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 1000;
+}
+
+.confirm-modal {
+    width: min(420px, calc(100% - 40px));
+
+    padding: 28px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+
+    background: #292929;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+    text-align: center;
+}
+
+.confirm-modal h3 {
+    margin: 0 0 10px;
+
+    color: #fff;
+    font-size: 24px;
+}
+
+.confirm-modal p {
+    margin: 0;
+
+    color: #a8a8a8;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 24px;
+}
+
+.confirm-actions button {
+    flex: 1;
+
+    min-height: 46px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.confirm-no {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    background: #333;
+    color: #ddd;
+}
+
+.confirm-yes {
+    border: none;
+
+    background: #e0ba27;
+    color: #111;
+}
+
+.confirm-actions button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+Empty State
+========================================================= */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 220px;
+
+    padding: 36px 24px;
+
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border: 1px solid rgba(216, 181, 47, 0.35);
+    border-radius: 50%;
+
+    background: rgba(216, 181, 47, 0.08);
+
+    color: var(--gold);
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   Loading / Error
+   ========================================================= */
+
+.page-loading,
+.page-error {
+    min-height: 50vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-muted);
+}
+
+.page-error {
+    color: var(--danger);
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 700px) {
+    .reminders-page {
+        padding: 28px 18px 48px;
+    }
+
+    .reminders-header h1 {
+        font-size: 32px;
+    }
+
+    .reminders-gold-line {
+        margin-bottom: 32px;
+    }
+
+    .reminder-tabs {
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+   .reminder-tab {
+    appearance: none;
+    -webkit-appearance: none;
+
+    min-height: 48px;
+    padding: 0 24px;
+
+    border: 0 !important;
+    outline: none;
+
+    border-radius: 12px;
+
+    background: var(--surface);
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 15px;
+
+    box-shadow: none;
+
+    cursor: pointer;
+}
+
+.reminder-tab:focus,
+.reminder-tab:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+.reminder-tab:hover {
+    background: var(--surface-hover);
+}
+
+.reminder-tab.active {
+    background: var(--gold);
+    color: #171717;
+
+    border: 0 !important;
+    box-shadow: none;
+}
+
+    .reminder-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contact-client-button,
+    .reminder-actions .mark-sent-button {
+        width: 100%;
+    }
+
+    .completed-badge {
+        top: 14px;
+        right: 14px;
+    }
+}
+
+/* =========================================================
+   Back button / icon
+   ========================================================= */
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    text-decoration: none;
+}
+
+.back-link img {
+    width: 28px;
+    height: 28px;
+
+    display: block;
+    object-fit: contain;
+
+    /* превращаем чёрную SVG-стрелку в золотую */
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.back-link:hover img {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(82%)
+        sepia(80%)
+        saturate(1000%)
+        hue-rotate(5deg)
+        brightness(105%);
+
+    transform: translateX(-3px);
+}   

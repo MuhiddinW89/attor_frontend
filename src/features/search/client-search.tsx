@@ -59,7 +59,7 @@ export default function ClientSearch() {
                     )}
 
                     {!isLoading &&
-                        data?.map((client, index) => (
+                        data?.map((client) => (
                             <Link
                                 key={client.id}
                                 to={`/clients/${client.id}`}

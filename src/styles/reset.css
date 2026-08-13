@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--bg);
+}
+
+body {
+    margin: 0;
+
+    min-width: 320px;
+    min-height: 100vh;
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+a {
+    color: inherit;
+}
+
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+
+    font-family: var(--heading);
+    font-weight: 600;
+
+    color: var(--text);
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+h2 {
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: 1.25;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--surface);
+    color: var(--text);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input,
+select {
+    min-height: 46px;
+    padding: 0 14px;
+}
+
+textarea {
+    min-height: 110px;
+    padding: 12px 14px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--gold);
+
+    box-shadow:
+        0 0 0 2px rgba(216, 181, 47, 0.12);
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button {
+    border: 0;
+    border-radius: var(--radius-md);
+
+    padding: 12px 20px;
+
+    background: var(--gold);
+    color: #171717;
+
+    font-family: var(--heading);
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    background: var(--gold-light);
+    box-shadow: var(--shadow-gold);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* =========================
+   Scrollbar
+   ========================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+}
+
+/* =========================
+   Responsive Typography
+   ========================= */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 19px;
+    }
+}
