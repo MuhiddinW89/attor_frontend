@@ -1,0 +1,545 @@
+.client-details-page {
+    width: min(900px, calc(100% - 40px));
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 40px 0 110px;
+
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   Header
+========================================================= */
+
+.client-details-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.client-details-header h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.client-details-back {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.client-details-back-icon {
+    width: 30px;
+    height: 30px;
+
+    display: block;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+
+    transition:
+        filter 0.2s ease,
+        transform 0.2s ease;
+}
+
+.client-details-back:hover .client-details-back-icon {
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(82%)
+        sepia(90%)
+        saturate(1000%)
+        hue-rotate(5deg)
+        brightness(105%);
+
+    transform: translateX(-3px);
+}
+
+.client-details-line {
+    width: 100%;
+    height: 2px;
+
+    margin-top: 12px;
+    margin-bottom: 32px;
+
+    background: var(--gold);
+}
+
+/* =========================================================
+   Client Profile
+========================================================= */
+
+.client-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 28px 24px 26px;
+
+    margin-bottom: 14px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.client-avatar {
+    width: 78px;
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 14px;
+
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+
+    background: #242424;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.client-profile-card h2 {
+    margin: 0 0 14px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 28px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.client-profile-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: min(100%, 420px);
+
+    margin-top: 7px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 15px;
+}
+
+.client-profile-row img {
+    width: 19px;
+    height: 19px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.client-birthday-icon {
+    width: 19px;
+
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    text-align: center;
+
+    font-size: 12px;
+}
+
+/* =========================================================
+   Stats
+========================================================= */
+
+.client-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 28px;
+}
+
+.client-stat-card {
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-card);
+
+    text-align: center;
+}
+
+.client-stat-card > span {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.15;
+}
+
+.client-stat-card strong {
+    margin-top: 8px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.client-stat-card:nth-child(2) strong {
+    color: var(--gold);
+}
+
+/* =========================================================
+   Purchase History
+========================================================= */
+
+.client-purchase-section h2 {
+    margin: 0 0 14px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.client-purchase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.client-purchase-card {
+    display: flex;
+    gap: 12px;
+
+    padding: 17px 18px;
+
+    box-sizing: border-box;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.client-purchase-icon {
+    width: 30px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: 3px;
+
+    flex-shrink: 0;
+}
+
+.client-purchase-icon img {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.client-purchase-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.client-purchase-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.client-purchase-top h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.client-purchase-volume {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+.client-purchase-top strong {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.client-purchase-content time {
+    display: block;
+
+    margin-top: 9px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+.client-purchase-content p {
+    margin: 8px 0 0;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.client-no-sales {
+    padding: 30px;
+
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    color: var(--text-muted);
+
+    text-align: center;
+}
+
+/* =========================================================
+   Add New Purchase
+========================================================= */
+
+.client-add-purchase {
+    width: 100%;
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    margin-top: 22px;
+
+    box-sizing: border-box;
+
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+
+    background: var(--gold);
+    color: #171717;
+
+    font-family: var(--heading);
+    font-size: 16px;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 5px 14px rgba(216, 181, 47, 0.18);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.client-add-purchase:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+
+    transform: translateY(-1px);
+}
+
+.client-add-purchase > span {
+    font-family: var(--sans);
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.client-add-purchase strong {
+    font-weight: 700;
+}
+
+/* =========================================================
+   Loading / Error
+========================================================= */
+
+.client-details-loading,
+.client-details-error {
+    padding: 60px 20px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 20px;
+
+    text-align: center;
+}
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 700px) {
+    .client-details-page {
+        width: min(100% - 32px, 900px);
+
+        padding: 28px 0 90px;
+    }
+
+    .client-details-header h1 {
+        font-size: 30px;
+    }
+
+    .client-profile-card {
+        padding: 24px 18px;
+    }
+
+    .client-avatar {
+        width: 68px;
+        height: 68px;
+
+        font-size: 23px;
+    }
+
+    .client-profile-card h2 {
+        font-size: 24px;
+    }
+
+    .client-stats {
+        gap: 8px;
+    }
+
+    .client-stat-card {
+        min-height: 88px;
+
+        padding: 10px 6px;
+    }
+
+    .client-stat-card > span {
+        font-size: 10px;
+    }
+
+    .client-stat-card strong {
+        font-size: 20px;
+    }
+
+    .client-purchase-card {
+        padding: 15px;
+    }
+
+    .client-purchase-top h3 {
+        font-size: 16px;
+    }
+
+    .client-purchase-top strong {
+        font-size: 17px;
+    }
+}
+
+.client-details-attor {
+    margin-left: auto;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 16px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.client-details-attor:hover {
+    color: var(--gold-light);
+}

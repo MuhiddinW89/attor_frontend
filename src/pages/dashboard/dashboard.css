@@ -1,0 +1,474 @@
+.dashboard-page {
+    width: min(900px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 40px 0 60px;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.dashboard-eyebrow {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 38px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    line-height: 1;
+}
+
+.dashboard-header h1 {
+    margin: 8px 0 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.dashboard-header p {
+    margin: 7px 0 0;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 14px;
+}
+
+.dashboard-line {
+    width: 100%;
+    height: 2px;
+
+    margin-top: 18px;
+    margin-bottom: 28px;
+
+    background: var(--gold);
+}
+
+/* =========================================================
+   Stats
+========================================================= */
+
+.dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.dashboard-stat-card {
+    min-height: 112px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-card);
+
+    text-align: center;
+}
+
+.dashboard-stat-card span {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.15;
+}
+
+.dashboard-stat-card strong {
+    margin-top: 9px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 25px;
+}
+
+.dashboard-stat-card:last-child strong {
+    color: var(--gold);
+}
+
+/* =========================================================
+   Actions
+========================================================= */
+
+.dashboard-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 32px;
+}
+
+.dashboard-action {
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 14px;
+
+    background: #242424;
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.dashboard-action:hover {
+    background: #303030;
+    border-color: var(--gold);
+
+    transform: translateY(-1px);
+}
+
+.dashboard-action.primary {
+    border-color: var(--gold);
+
+    background: var(--gold);
+    color: #171717;
+}
+
+.dashboard-action.primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+}
+
+.dashboard-action-icon {
+    font-size: 21px;
+    line-height: 1;
+}
+
+/* =========================================================
+   Sections
+========================================================= */
+
+.dashboard-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 14px;
+}
+
+.dashboard-section-header h2 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 24px;
+}
+
+.dashboard-section-header a {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.dashboard-section-header a:hover {
+    color: var(--gold-light);
+}
+
+/* =========================================================
+   Recent Sales
+========================================================= */
+
+.dashboard-sales-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dashboard-sale-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 15px 17px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 15px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.dashboard-sale-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.dashboard-sale-icon img {
+    width: 25px;
+    height: 25px;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.dashboard-sale-main {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.dashboard-sale-main h3 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 16px;
+}
+
+.dashboard-sale-main p {
+    margin: 3px 0 0;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+.dashboard-sale-main time {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+.dashboard-sale-status {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 12px;
+}
+
+/* =========================================================
+   Follow-ups
+========================================================= */
+
+.dashboard-reminder-preview {
+    margin-top: 30px;
+}
+
+.dashboard-followup-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-followup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 15px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 14px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.dashboard-followup-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.dashboard-followup-icon img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.dashboard-followup div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.dashboard-followup strong {
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 15px;
+}
+
+.dashboard-followup span {
+    margin-top: 2px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 12px;
+}
+
+.dashboard-call {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(216, 181, 47, 0.12);
+}
+
+.dashboard-call img {
+    width: 18px;
+    height: 18px;
+
+    object-fit: contain;
+
+    filter:
+        brightness(0)
+        saturate(100%)
+        invert(75%)
+        sepia(85%)
+        saturate(900%)
+        hue-rotate(5deg)
+        brightness(95%);
+}
+
+.dashboard-empty {
+    padding: 28px;
+
+    border-radius: 15px;
+
+    background: var(--surface);
+
+    color: var(--text-muted);
+
+    text-align: center;
+}
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 700px) {
+    .dashboard-page {
+        width: min(100% - 32px, 900px);
+
+        padding: 28px 0 48px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 30px;
+    }
+
+    .dashboard-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-section-header h2 {
+        font-size: 21px;
+    }
+
+    .dashboard-sale-card {
+        padding: 14px;
+    }
+}
+
+.dashboard-sale-price {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 18px;
+    font-weight: 700;
+}

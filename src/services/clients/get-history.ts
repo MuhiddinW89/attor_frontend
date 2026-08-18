@@ -5,7 +5,7 @@ export interface Sale {
     perfume_name: string;
     volume_ml: number;
     price: number;
-    comment?: string;
+    comment?: string | null;
     sale_date: string;
 }
 
@@ -29,12 +29,29 @@ export interface ClientHistory {
     };
 }
 
+export interface ClientDetails {
+    id: string;
+    full_name: string;
+    phone: string;
+    instagram?: string;
+    birth_date?: string;
+}
+
 export async function getClientHistory(
     id: string,
 ): Promise<ClientHistory> {
-
     const response = await api.get<ClientHistory>(
         `/clients/${id}/history`,
+    );
+
+    return response.data;
+}
+
+export async function getClientDetails(
+    id: string,
+): Promise<ClientDetails> {
+    const response = await api.get<ClientDetails>(
+        `/clients/${id}`,
     );
 
     return response.data;

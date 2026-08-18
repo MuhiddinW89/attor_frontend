@@ -137,6 +137,10 @@
     background: var(--gold);
 }
 
+/* =========================================================
+   Sale Cards
+   ========================================================= */
+
 .sale-card {
     padding: 24px;
 
@@ -146,6 +150,12 @@
     border-radius: 18px;
 
     box-shadow: var(--shadow-card);
+}
+
+/* Space between separate cards */
+
+.sale-card + .sale-card {
+    margin-top: 16px;
 }
 
 .sale-card h2 {
@@ -513,4 +523,24 @@
     .sale-step-divider {
         max-width: 50px;
     }
+}
+
+.create-sale-attor {
+    margin-left: auto;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 16px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.create-sale-attor:hover {
+    color: var(--gold-light);
 }

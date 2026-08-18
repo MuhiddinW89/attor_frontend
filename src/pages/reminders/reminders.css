@@ -687,3 +687,23 @@ Empty State
 
     transform: translateX(-3px);
 }   
+
+.reminders-attor {
+    margin-left: auto;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 16px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.reminders-attor:hover {
+    color: var(--gold-light);
+}

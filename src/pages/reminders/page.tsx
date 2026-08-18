@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+
 import "./reminders.css";
 
 import {
@@ -9,7 +9,6 @@ import {
 } from "../../services/reminders/get-reminders";
 
 import MarkSentButton from "../../features/reminders/mark-sent-button";
-// import ClientSearch from "../../features/search/client-search";
 import Card from "../../components/ui/Card";
 
 import arrowIcon from "../../assets/icons/arrow.png";
@@ -17,12 +16,12 @@ import calendarIcon from "../../assets/icons/calendar.png";
 import rosemaryIcon from "../../assets/icons/rosemary.png";
 import phoneIcon from "../../assets/icons/phone.png";
 
-
 function formatRelativeTime(dateString: string) {
     const date = new Date(dateString);
     const now = new Date();
 
     const diffMs = now.getTime() - date.getTime();
+
     const diffDays = Math.floor(
         diffMs / (1000 * 60 * 60 * 24),
     );
@@ -117,14 +116,41 @@ const tabs: {
     },
 ];
 
+function getInitialStatus(
+    value: string | null,
+): ReminderStatus {
+    if (
+        value === "all" ||
+        value === "urgent" ||
+        value === "overdue" ||
+        value === "completed"
+    ) {
+        return value;
+    }
+
+    return "all";
+}
+
 export default function RemindersPage() {
-    const [status, setStatus] =
-        useState<ReminderStatus>("all");
+    const [searchParams, setSearchParams] =
+        useSearchParams();
+
+    const status = getInitialStatus(
+        searchParams.get("status"),
+    );
 
     const { data, isLoading, error } = useQuery({
         queryKey: ["reminders", status],
         queryFn: () => getReminders(status),
     });
+
+    function handleStatusChange(
+        nextStatus: ReminderStatus,
+    ) {
+        setSearchParams({
+            status: nextStatus,
+        });
+    }
 
     if (isLoading) {
         return (
@@ -150,18 +176,26 @@ export default function RemindersPage() {
         <main className="page-container reminders-page">
             <header className="reminders-header">
                 <Link
-    to="/"
-    className="back-link"
-    aria-label="Back"
->
-    <img
-        src={arrowIcon}
-        alt=""
-        className="back-icon"
-    />
-</Link>
+                    to="/"
+                    className="back-link"
+                    aria-label="Back"
+                >
+                    <img
+                        src={arrowIcon}
+                        alt=""
+                        className="back-icon"
+                    />
+                </Link>
 
                 <h1>Reminders</h1>
+
+                <Link
+    to="/"
+    className="reminders-attor"
+>
+    ATTOR
+</Link>
+
             </header>
 
             <div className="reminders-gold-line" />
@@ -177,7 +211,9 @@ export default function RemindersPage() {
                                 : ""
                         }`}
                         onClick={() =>
-                            setStatus(tab.value)
+                            handleStatusChange(
+                                tab.value,
+                            )
                         }
                     >
                         {tab.label}
@@ -194,13 +230,15 @@ export default function RemindersPage() {
                             </div>
 
                             <h3>
-                                {status === "completed"
+                                {status ===
+                                "completed"
                                     ? "No completed reminders"
                                     : "All caught up"}
                             </h3>
 
                             <p>
-                                {status === "completed"
+                                {status ===
+                                "completed"
                                     ? "You don't have any completed reminders yet."
                                     : "There are no reminders in this category."}
                             </p>
@@ -224,7 +262,9 @@ export default function RemindersPage() {
                                         to={`/clients/${item.client_id}`}
                                         className="client-name"
                                     >
-                                        {item.client_name}
+                                        {
+                                            item.client_name
+                                        }
                                     </Link>
 
                                     {item.is_sent && (
@@ -237,12 +277,14 @@ export default function RemindersPage() {
                                         href={`tel:${item.phone}`}
                                         className="reminder-info-row"
                                     >
-                                       <span className="info-icon">
-    <img
-        src={phoneIcon}
-        alt=""
-    />
-</span>
+                                        <span className="info-icon">
+                                            <img
+                                                src={
+                                                    phoneIcon
+                                                }
+                                                alt=""
+                                            />
+                                        </span>
 
                                         <span>
                                             {item.phone}
@@ -251,25 +293,35 @@ export default function RemindersPage() {
 
                                     <div className="reminder-info-row">
                                         <span className="info-icon">
-    <img
-        src={rosemaryIcon}
-        alt=""
-    />
-</span>
+                                            <img
+                                                src={
+                                                    rosemaryIcon
+                                                }
+                                                alt=""
+                                            />
+                                        </span>
 
                                         <span>
-                                            {item.perfume_name} —{" "}
-                                            {item.volume_ml} ml
+                                            {
+                                                item.perfume_name
+                                            }{" "}
+                                            —{" "}
+                                            {
+                                                item.volume_ml
+                                            }{" "}
+                                            ml
                                         </span>
                                     </div>
 
                                     <div className="reminder-info-row">
                                         <span className="info-icon">
-    <img
-        src={calendarIcon}
-        alt=""
-    />
-</span>
+                                            <img
+                                                src={
+                                                    calendarIcon
+                                                }
+                                                alt=""
+                                            />
+                                        </span>
 
                                         <span>
                                             Purchased:{" "}
@@ -296,7 +348,9 @@ export default function RemindersPage() {
                                         <div
                                             className={`reminder-status-badge ${reminderStatus.type}`}
                                         >
-                                            {reminderStatus.label}
+                                            {
+                                                reminderStatus.label
+                                            }
                                         </div>
                                     )}
 
@@ -307,7 +361,9 @@ export default function RemindersPage() {
                                             </span>
 
                                             <span>
-                                                {item.comment}
+                                                {
+                                                    item.comment
+                                                }
                                             </span>
                                         </div>
                                     )}
@@ -318,12 +374,18 @@ export default function RemindersPage() {
                                                 href={`tel:${item.phone}`}
                                                 className="contact-client-button"
                                             >
-                                                <span>☎</span>
-                                                Contact Client
+                                                <span>
+                                                    ☎
+                                                </span>
+
+                                                Contact
+                                                Client
                                             </a>
 
                                             <MarkSentButton
-                                                id={item.id}
+                                                id={
+                                                    item.id
+                                                }
                                             />
                                         </div>
                                     )}

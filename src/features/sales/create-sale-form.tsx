@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import {
+    Link,
+    useLocation,
+} from "react-router-dom";
 
 import arrowIcon from "../../assets/icons/arrow.png";
 
@@ -14,17 +17,44 @@ import { createSale } from "../../services/sales/create-sale";
 
 type SaleStep = "phone" | "purchase";
 
-export default function CreateSaleForm() {
-    const [step, setStep] = useState<SaleStep>("phone");
+type CreateSaleLocationState = {
+    from?: string;
+    clientId?: string;
+    clientName?: string;
+    clientPhone?: string;
+};
 
-    const [search, setSearch] = useState("");
-    const [phone, setPhone] = useState("");
+export default function CreateSaleForm() {
+    const location = useLocation();
+
+    const navigationState =
+        location.state as
+            | CreateSaleLocationState
+            | null;
+
+    const clientFromDetails =
+        Boolean(navigationState?.clientId);
+
+    const [step, setStep] = useState<SaleStep>(
+        clientFromDetails
+            ? "purchase"
+            : "phone",
+    );
+
+    const [search, setSearch] = useState(
+        navigationState?.clientName ?? "",
+    );
+
+    const [phone, setPhone] = useState(
+        navigationState?.clientPhone ?? "",
+    );
 
     const [isNewCustomer, setIsNewCustomer] =
         useState(false);
 
     const [form, setForm] = useState({
-        full_name: "",
+        full_name:
+            navigationState?.clientName ?? "",
         instagram: "",
         birthday: "",
         perfume_name: "",
@@ -38,10 +68,14 @@ export default function CreateSaleForm() {
         queryFn: () => searchClients(search),
         enabled:
             search.trim().length >= 3 &&
-            step === "phone",
+            step === "phone" &&
+            !clientFromDetails,
     });
 
-    const searchDigits = search.replace(/\D/g, "");
+    const searchDigits = search.replace(
+        /\D/g,
+        "",
+    );
 
     const exactPhoneMatch =
         searchDigits.length >= 7 &&
@@ -55,7 +89,7 @@ export default function CreateSaleForm() {
         mutationFn: createSale,
 
         onSuccess: () => {
-            window.location.href = "/";
+            window.location.href = "/reminders?status=urgent";
         },
     });
 
@@ -84,7 +118,10 @@ export default function CreateSaleForm() {
     }
 
     function startNewCustomer() {
-        const digits = search.replace(/\D/g, "");
+        const digits = search.replace(
+            /\D/g,
+            "",
+        );
 
         if (digits.length >= 7) {
             setPhone(search.trim());
@@ -92,8 +129,6 @@ export default function CreateSaleForm() {
             setPhone("");
         }
 
-        // Новый клиент не должен наследовать
-        // имя клиента, которое было найдено ранее.
         setForm((prev) => ({
             ...prev,
             full_name: "",
@@ -133,9 +168,14 @@ export default function CreateSaleForm() {
                     <button
                         type="button"
                         className="create-sale-back"
-                        onClick={() =>
-                            setStep("phone")
-                        }
+                        onClick={() => {
+                            if (clientFromDetails) {
+                                window.history.back();
+                                return;
+                            }
+
+                            setStep("phone");
+                        }}
                         aria-label="Back"
                     >
                         <img
@@ -150,6 +190,12 @@ export default function CreateSaleForm() {
                             ? "Create Sale"
                             : "Add Sale"}
                     </h1>
+                    <Link
+    to="/"
+    className="create-sale-attor"
+>
+    ATTOR
+</Link>
                 </header>
 
                 <div className="create-sale-line" />
@@ -210,8 +256,7 @@ export default function CreateSaleForm() {
                                     onChange={(e) =>
                                         update(
                                             "full_name",
-                                            e.target
-                                                .value,
+                                            e.target.value,
                                         )
                                     }
                                     required
@@ -219,15 +264,16 @@ export default function CreateSaleForm() {
                             </label>
 
                             <label className="sale-field">
-                                <span>Phone</span>
+                                <span>
+                                    Phone
+                                </span>
 
                                 <input
                                     type="tel"
                                     value={phone}
                                     onChange={(e) =>
                                         setPhone(
-                                            e.target
-                                                .value,
+                                            e.target.value,
                                         )
                                     }
                                     required
@@ -248,8 +294,7 @@ export default function CreateSaleForm() {
                                     onChange={(e) =>
                                         update(
                                             "instagram",
-                                            e.target
-                                                .value,
+                                            e.target.value,
                                         )
                                     }
                                 />
@@ -269,8 +314,7 @@ export default function CreateSaleForm() {
                                     onChange={(e) =>
                                         update(
                                             "birthday",
-                                            e.target
-                                                .value,
+                                            e.target.value,
                                         )
                                     }
                                 />
@@ -299,8 +343,7 @@ export default function CreateSaleForm() {
                                 onChange={(e) =>
                                     update(
                                         "perfume_name",
-                                        e.target
-                                            .value,
+                                        e.target.value,
                                     )
                                 }
                                 required
@@ -308,7 +351,9 @@ export default function CreateSaleForm() {
                         </label>
 
                         <div className="sale-field">
-                            <span>Volume</span>
+                            <span>
+                                Volume
+                            </span>
 
                             <div className="volume-options">
                                 {[
@@ -317,7 +362,9 @@ export default function CreateSaleForm() {
                                 ].map(
                                     (volume) => (
                                         <button
-                                            key={volume}
+                                            key={
+                                                volume
+                                            }
                                             type="button"
                                             className={`volume-option ${
                                                 form.volume_ml ===
@@ -384,10 +431,12 @@ export default function CreateSaleForm() {
                         </div>
 
                         <label className="sale-field">
-                            <span>Price</span>
+                            <span>
+                                Price
+                            </span>
 
                             <div className="sale-input-with-icon">
-                                <span>$</span>
+                                <span>UZS</span>
 
                                 <input
                                     type="text"
@@ -427,8 +476,7 @@ export default function CreateSaleForm() {
                                 onChange={(e) =>
                                     update(
                                         "comment",
-                                        e.target
-                                            .value,
+                                        e.target.value,
                                     )
                                 }
                             />
@@ -467,6 +515,13 @@ export default function CreateSaleForm() {
                 </Link>
 
                 <h1>New Sale</h1>
+
+                <Link
+    to="/"
+    className="create-sale-attor"
+>
+    ATTOR
+</Link>
             </header>
 
             <div className="create-sale-line" />
@@ -499,7 +554,6 @@ export default function CreateSaleForm() {
 
                     <div className="sale-phone-field">
                         <span className="sale-phone-icon">
-                           
                         </span>
 
                         <input
@@ -511,6 +565,7 @@ export default function CreateSaleForm() {
                                 setSearch(
                                     e.target.value,
                                 );
+
                                 setIsNewCustomer(
                                     false,
                                 );
