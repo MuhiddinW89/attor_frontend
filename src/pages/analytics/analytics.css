@@ -1,0 +1,735 @@
+/* =========================================================
+   Analytics
+========================================================= */
+
+.analytics-page {
+    width: min(900px, calc(100% - 40px));
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 40px 0 80px;
+
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   Header
+========================================================= */
+
+.analytics-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.analytics-brand {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 800;
+
+    text-decoration: none;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.analytics-brand:hover {
+    color: var(--gold-light);
+
+    transform: translateY(-1px);
+}
+
+.analytics-header > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-eyebrow {
+    margin-bottom: 3px;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+}
+
+.analytics-header h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.analytics-header p {
+    margin: 5px 0 0;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 14px;
+}
+
+/* =========================================================
+   Line
+========================================================= */
+
+.analytics-line {
+    width: 100%;
+    height: 2px;
+
+    margin-top: 18px;
+    margin-bottom: 24px;
+
+    background: var(--gold);
+}
+
+/* =========================================================
+   Filters
+========================================================= */
+
+.analytics-filters {
+    padding: 18px;
+
+    margin-bottom: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.analytics-filter-fields {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.analytics-filter-fields label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    min-width: 0;
+}
+
+.analytics-filter-fields label > span {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+.analytics-filter-fields select {
+    width: 100%;
+    min-height: 42px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #171717;
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.analytics-filter-fields select:hover {
+    border-color: rgba(216, 181, 47, 0.5);
+}
+
+.analytics-filter-fields select:focus {
+    border-color: var(--gold);
+}
+
+.analytics-filter-fields select:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   Stats
+========================================================= */
+
+.analytics-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.analytics-stats article {
+    min-height: 116px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px;
+
+    box-sizing: border-box;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow-card);
+
+    text-align: center;
+}
+
+.analytics-stats article > span {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+.analytics-stats article strong {
+    margin-top: 9px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.analytics-stats article:nth-child(1) strong,
+.analytics-stats article:nth-child(4) strong {
+    color: var(--gold);
+}
+
+.analytics-stats article small {
+    margin-top: 5px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 11px;
+}
+
+/* =========================================================
+   Sections
+========================================================= */
+
+.analytics-section {
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 17px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.analytics-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.analytics-section-title span {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+.analytics-section-title h2 {
+    margin: 4px 0 0;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   Revenue Chart
+========================================================= */
+
+.analytics-chart {
+    height: 260px;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding: 10px 4px 0;
+
+    box-sizing: border-box;
+}
+
+.analytics-chart-item {
+    min-width: 28px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.analytics-bar-wrap {
+    width: 100%;
+    height: 210px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.analytics-bar {
+    width: 22px;
+
+    min-height: 8px;
+
+    border-radius: 6px 6px 2px 2px;
+
+    background: var(--gold);
+
+    cursor: pointer;
+
+    transition:
+        height 0.25s ease,
+        opacity 0.2s ease,
+        transform 0.15s ease;
+}
+
+.analytics-bar:hover {
+    opacity: 0.75;
+
+    transform: translateY(-2px);
+}
+
+.analytics-chart-item > span {
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+.analytics-chart-empty {
+    min-height: 210px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+/* =========================================================
+   Two Column Grid
+========================================================= */
+
+.analytics-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-top: 14px;
+}
+
+/* =========================================================
+   Rankings
+========================================================= */
+
+.analytics-ranking {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.analytics-ranking article,
+.analytics-ranking a {
+    min-height: 54px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 11px;
+
+    box-sizing: border-box;
+
+    border-radius: 11px;
+
+    background: #242424;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.analytics-ranking a {
+    border: 1px solid transparent;
+}
+
+.analytics-ranking a:hover {
+    border-color: rgba(216, 181, 47, 0.25);
+
+    background: #2b2b2b;
+}
+
+.analytics-ranking b {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #171717;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 11px;
+}
+
+.analytics-ranking div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.analytics-ranking strong {
+    overflow: hidden;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 13px;
+    font-weight: 600;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.analytics-ranking span {
+    margin-top: 2px;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 11px;
+}
+
+.analytics-ranking em {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+.analytics-ranking-empty {
+    min-height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+/* =========================================================
+   Insights
+========================================================= */
+
+.analytics-insights {
+    margin-top: 14px;
+
+    padding: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(216, 181, 47, 0.12);
+    border-radius: 17px;
+
+    box-shadow: var(--shadow-card);
+}
+
+.analytics-insights > span {
+    color: var(--gold);
+
+    font-family: var(--heading);
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.6px;
+}
+
+.analytics-insights h2 {
+    margin: 4px 0 14px;
+
+    color: var(--text);
+
+    font-family: var(--heading);
+    font-size: 22px;
+}
+
+.analytics-insights p {
+    position: relative;
+
+    margin: 0 0 8px;
+
+    padding: 10px 12px 10px 30px;
+
+    border-radius: 10px;
+
+    background: #242424;
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+    font-size: 13px;
+}
+
+.analytics-insights p:last-child {
+    margin-bottom: 0;
+}
+
+.analytics-insights p::before {
+    content: "•";
+
+    position: absolute;
+
+    left: 13px;
+    top: 8px;
+
+    color: var(--gold);
+
+    font-size: 18px;
+}
+
+/* =========================================================
+   Loading / Error
+========================================================= */
+
+.analytics-empty {
+    padding: 50px 20px;
+
+    border-radius: 16px;
+
+    background: var(--surface);
+
+    color: var(--text-muted);
+
+    font-family: var(--sans);
+
+    text-align: center;
+}
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 700px) {
+    .analytics-page {
+        width: min(100% - 32px, 900px);
+
+        padding: 28px 0 60px;
+    }
+
+    .analytics-header {
+        gap: 12px;
+    }
+
+    .analytics-brand {
+        font-size: 18px;
+    }
+
+    .analytics-header h1 {
+        font-size: 30px;
+    }
+
+    .analytics-header p {
+        font-size: 13px;
+    }
+
+    /* =============================================
+       Filters
+    ============================================= */
+
+    .analytics-filter-fields {
+        display: flex;
+
+        flex-wrap: nowrap;
+
+        gap: 8px;
+
+        overflow-x: auto;
+
+        padding-bottom: 2px;
+    }
+
+    .analytics-filter-fields label {
+        flex: 0 0 auto;
+
+        display: flex;
+        align-items: center;
+
+        gap: 6px;
+    }
+
+    .analytics-filter-fields label > span {
+        flex-shrink: 0;
+
+        font-size: 11px;
+    }
+
+    .analytics-filter-fields select {
+        width: 105px;
+        min-width: 105px;
+
+        min-height: 44px;
+    }
+
+    /* =============================================
+       Stats
+    ============================================= */
+
+    .analytics-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-stats article {
+        min-height: 100px;
+    }
+
+    .analytics-stats article strong {
+        font-size: 18px;
+    }
+
+    /* =============================================
+       Grid
+    ============================================= */
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-section {
+        padding: 16px;
+    }
+
+    /* =============================================
+       Chart
+    ============================================= */
+
+    .analytics-chart {
+        gap: 5px;
+    }
+
+    .analytics-bar {
+        width: 18px;
+    }
+
+    .analytics-chart-item > span {
+        font-size: 9px;
+    }
+
+    /* =============================================
+       Rankings
+    ============================================= */
+
+    .analytics-ranking em {
+        font-size: 11px;
+    }
+}

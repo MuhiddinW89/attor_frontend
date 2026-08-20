@@ -7,6 +7,7 @@ import RemindersPage from "../pages/reminders/page";
 import ClientPage from "../pages/client/page";
 import ClientsListPage from "../pages/clients-list/page";
 import SalesPage from "../pages/sales/page";
+import AnalyticsPage from "../pages/analytics/page";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
                 path: "reminders",
                 element: <RemindersPage />,
             },
+            {
+    path: "analytics",
+    element: <AnalyticsPage />,
+},
         ],
     },
 ]);
