@@ -91,6 +91,25 @@ export default function AnalyticsPage() {
     });
 
     /*
+     * Backend can return null for collections
+     * when there are no sales in the selected period.
+     *
+     * Normalize them to empty arrays so the UI
+     * never crashes on .length or .map.
+     */
+    const revenueOverview =
+        data?.revenue_overview ?? [];
+
+    const topPerfumes =
+        data?.top_perfumes ?? [];
+
+    const topCustomers =
+        data?.top_customers ?? [];
+
+    const keyInsights =
+        data?.key_insights ?? [];
+
+    /*
      * Number of days in the selected month.
      */
     const selectedMonthDays = useMemo(() => {
@@ -113,21 +132,20 @@ export default function AnalyticsPage() {
     /*
      * Change year.
      *
-     * If the selected day doesn't exist in the
-     * newly selected year/month, reset the day.
+     * Week/day depend on the selected year.
      */
     function handleYearChange(
-    event: React.ChangeEvent<HTMLSelectElement>,
-) {
-    const nextYear = Number(event.target.value);
+        event: React.ChangeEvent<HTMLSelectElement>,
+    ) {
+        const nextYear = Number(
+            event.target.value,
+        );
 
-    setYear(nextYear);
+        setYear(nextYear);
 
-    // Week/day depend on the calendar of the selected year.
-    // Reset them when the year changes.
-    setWeek(undefined);
-    setDay(undefined);
-}
+        setWeek(undefined);
+        setDay(undefined);
+    }
 
     /*
      * Month change.
@@ -425,19 +443,19 @@ export default function AnalyticsPage() {
                             </div>
                         </div>
 
-                        {data.revenue_overview
-                            .length === 0 ? (
+                        {revenueOverview.length ===
+                        0 ? (
                             <div className="analytics-chart-empty">
                                 No sales for this
                                 period.
                             </div>
                         ) : (
                             <div className="analytics-chart">
-                                {data.revenue_overview.map(
+                                {revenueOverview.map(
                                     (item) => {
                                         const maxRevenue =
                                             Math.max(
-                                                ...data.revenue_overview.map(
+                                                ...revenueOverview.map(
                                                     (
                                                         point,
                                                     ) =>
@@ -510,14 +528,14 @@ export default function AnalyticsPage() {
                                 </div>
                             </div>
 
-                            {data.top_perfumes
-                                .length === 0 ? (
+                            {topPerfumes.length ===
+                            0 ? (
                                 <div className="analytics-ranking-empty">
                                     No perfume data.
                                 </div>
                             ) : (
                                 <div className="analytics-ranking">
-                                    {data.top_perfumes.map(
+                                    {topPerfumes.map(
                                         (
                                             item,
                                             index,
@@ -576,14 +594,14 @@ export default function AnalyticsPage() {
                                 </div>
                             </div>
 
-                            {data.top_customers
-                                .length === 0 ? (
+                            {topCustomers.length ===
+                            0 ? (
                                 <div className="analytics-ranking-empty">
                                     No customer data.
                                 </div>
                             ) : (
                                 <div className="analytics-ranking">
-                                    {data.top_customers.map(
+                                    {topCustomers.map(
                                         (
                                             item,
                                             index,
@@ -640,14 +658,14 @@ export default function AnalyticsPage() {
                             What stands out
                         </h2>
 
-                        {data.key_insights.length ===
+                        {keyInsights.length ===
                         0 ? (
                             <p>
                                 No insights available
                                 for this period.
                             </p>
                         ) : (
-                            data.key_insights.map(
+                            keyInsights.map(
                                 (item) => (
                                     <p key={item}>
                                         {item}
