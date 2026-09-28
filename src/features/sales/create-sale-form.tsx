@@ -24,6 +24,25 @@ type CreateSaleLocationState = {
     clientPhone?: string;
 };
 
+
+
+function formatBirthday(value: string): string {
+    const digits = value
+        .replace(/\D/g, "")
+        .slice(0, 8);
+
+    if (digits.length <= 2) {
+        return digits;
+    }
+
+    if (digits.length <= 4) {
+        return `${digits.slice(0, 2)}.${digits.slice(2)}`;
+    }
+
+    return `${digits.slice(0, 2)}.${digits.slice(2, 4)}.${digits.slice(4)}`;
+}
+
+
 export default function CreateSaleForm() {
     const location = useLocation();
 
@@ -143,19 +162,21 @@ export default function CreateSaleForm() {
     ) {
         event.preventDefault();
 
-        mutation.mutate({
-            full_name: form.full_name,
-            phone,
-            instagram:
-                form.instagram || undefined,
-            perfume_name: form.perfume_name,
-            volume_ml: Number(
-                form.volume_ml || 0,
-            ),
-            price: Number(form.price || 0),
-            comment:
-                form.comment || undefined,
-        });
+      mutation.mutate({
+    full_name: form.full_name,
+    phone,
+    instagram:
+        form.instagram || undefined,
+    birthday:
+        form.birthday || undefined,
+    perfume_name: form.perfume_name,
+    volume_ml: Number(
+        form.volume_ml || 0,
+    ),
+    price: Number(form.price || 0),
+    comment:
+        form.comment || undefined,
+});
     }
 
     if (step === "purchase") {
@@ -305,19 +326,19 @@ export default function CreateSaleForm() {
                                     Birthday
                                 </span>
 
-                                <input
-                                    type="text"
-                                    placeholder="MM/DD/YYYY"
-                                    value={
-                                        form.birthday
-                                    }
-                                    onChange={(e) =>
-                                        update(
-                                            "birthday",
-                                            e.target.value,
-                                        )
-                                    }
-                                />
+                              <input
+                                type="text"
+                                inputMode="numeric"
+                                placeholder="DD.MM.YYYY"
+                                maxLength={10}
+                                value={form.birthday}
+                                onChange={(e) =>
+                                    update(
+                                        "birthday",
+                                        formatBirthday(e.target.value),
+                                    )
+                                }
+                            />
                             </label>
                         </div>
                     </section>

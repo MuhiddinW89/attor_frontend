@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import rosemaryIcon from "../../assets/icons/rosemary.png";
 
 import {
+    getAnalytics,
+} from "../../services/analytics/get";
+
+import {
     getReminders,
 } from "../../services/reminders/get-reminders";
 
@@ -24,12 +28,77 @@ function getGreeting() {
     return "Good evening";
 }
 
+
+function formatUZS(value: number) {
+    return `${Math.round(
+        value,
+    ).toLocaleString("en-US")} UZS`;
+}
+
+
 export default function DashboardPage() {
-    const { data: reminders = [], isLoading, error } =
-        useQuery({
-            queryKey: ["dashboard-reminders"],
-            queryFn: () => getReminders("all"),
-        });
+    const {
+        data: reminders = [],
+        isLoading: remindersLoading,
+        error: remindersError,
+    } = useQuery({
+        queryKey: ["dashboard-reminders"],
+        queryFn: () => getReminders("all"),
+    });
+
+    const today = new Date();
+
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1;
+    const currentDay = today.getDate();
+
+    /*
+     * Current month analytics.
+     *
+     * Example:
+     * /analytics?year=2026&month=9
+     */
+    const {
+        data: monthlyAnalytics,
+        isLoading: monthlyAnalyticsLoading,
+        error: monthlyAnalyticsError,
+    } = useQuery({
+        queryKey: [
+            "dashboard-monthly-analytics",
+            currentYear,
+            currentMonth,
+        ],
+        queryFn: () =>
+            getAnalytics({
+                year: currentYear,
+                month: currentMonth,
+            }),
+    });
+
+    /*
+     * Today's analytics.
+     *
+     * Example:
+     * /analytics?year=2026&month=9&day=28
+     */
+    const {
+        data: todayAnalytics,
+        isLoading: todayAnalyticsLoading,
+        error: todayAnalyticsError,
+    } = useQuery({
+        queryKey: [
+            "dashboard-today-analytics",
+            currentYear,
+            currentMonth,
+            currentDay,
+        ],
+        queryFn: () =>
+            getAnalytics({
+                year: currentYear,
+                month: currentMonth,
+                day: currentDay,
+            }),
+    });
 
     const pendingReminders = reminders.filter(
         (item) => !item.is_sent,
@@ -43,8 +112,6 @@ export default function DashboardPage() {
         )
         .slice(0, 5);
 
-    const today = new Date();
-
     const formattedDate = today.toLocaleDateString(
         "en-US",
         {
@@ -54,6 +121,16 @@ export default function DashboardPage() {
             year: "numeric",
         },
     );
+
+    const isLoading =
+        remindersLoading ||
+        monthlyAnalyticsLoading ||
+        todayAnalyticsLoading;
+
+    const hasError =
+        remindersError ||
+        monthlyAnalyticsError ||
+        todayAnalyticsError;
 
     if (isLoading) {
         return (
@@ -65,7 +142,7 @@ export default function DashboardPage() {
         );
     }
 
-    if (error) {
+    if (hasError) {
         return (
             <main className="dashboard-page">
                 <div className="dashboard-state">
@@ -96,27 +173,55 @@ export default function DashboardPage() {
             <div className="dashboard-line" />
 
             <section className="dashboard-stats">
+                {/* =========================
+                    Today's Sales
+                ========================= */}
                 <div className="dashboard-stat-card">
                     <span>Today's</span>
                     <span>Sales</span>
 
-                    <strong>—</strong>
+                    <strong>
+                        {todayAnalytics
+                            ? todayAnalytics.total_sales
+                            : "—"}
+                    </strong>
                 </div>
 
+                {/* =========================
+                    Monthly Revenue
+                ========================= */}
                 <div className="dashboard-stat-card">
                     <span>Monthly</span>
                     <span>Revenue</span>
 
-                    <strong>—</strong>
+                    <strong>
+                        {monthlyAnalytics
+                            ? formatUZS(
+                                  monthlyAnalytics.total_revenue,
+                              )
+                            : "—"}
+                    </strong>
                 </div>
 
+                {/* =========================
+                    Monthly Repeat Rate
+                ========================= */}
                 <div className="dashboard-stat-card">
-                    <span>Repeat</span>
-                    <span>Customers</span>
+                    <span>Monthly</span>
+                    <span>Repeat Rate</span>
 
-                    <strong>—</strong>
+                    <strong>
+                        {monthlyAnalytics
+                            ? `${Math.round(
+                                  monthlyAnalytics.repeat_rate,
+                              )}%`
+                            : "—"}
+                    </strong>
                 </div>
 
+                {/* =========================
+                    Pending Follow-ups
+                ========================= */}
                 <div className="dashboard-stat-card">
                     <span>Pending</span>
                     <span>Follow-ups</span>
@@ -159,6 +264,17 @@ export default function DashboardPage() {
                     </span>
 
                     <span>View Reminders</span>
+                </Link>
+
+                <Link
+                    to="/analytics"
+                    className="dashboard-action"
+                >
+                    <span className="dashboard-action-icon">
+                        ◌
+                    </span>
+
+                    <span>Analytics</span>
                 </Link>
             </section>
 
@@ -210,7 +326,7 @@ export default function DashboardPage() {
                                 </div>
 
                                 <div className="dashboard-sale-price">
-                                    —
+                                    {formatUZS(item.price)}
                                 </div>
                             </article>
                         ))}

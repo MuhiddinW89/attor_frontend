@@ -34,7 +34,7 @@ export interface ClientDetails {
     full_name: string;
     phone: string;
     instagram?: string;
-    birth_date?: string;
+    birthDate?: string;
 }
 
 export async function getClientHistory(

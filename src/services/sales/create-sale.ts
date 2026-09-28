@@ -4,6 +4,7 @@ export interface CreateSaleRequest {
     full_name: string;
     phone: string;
     instagram?: string;
+    birthday?: string;
 
     perfume_name: string;
     volume_ml: number;

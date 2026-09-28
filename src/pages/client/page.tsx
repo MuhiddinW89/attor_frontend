@@ -94,6 +94,16 @@ export default function ClientPage() {
         );
     }
 
+    function formatBirthday(date: string) {
+    const [year, month, day] = date.slice(0, 10).split("-");
+
+    if (!year || !month || !day) {
+        return date;
+    }
+
+    return `${day}.${month}.${year}`;
+}
+
     return (
         <main className="client-details-page">
             <header className="client-details-header">
@@ -149,17 +159,21 @@ export default function ClientPage() {
                     </div>
                 )}
 
-                {details.birth_date && (
-                    <div className="client-profile-row">
-                        <span className="client-birthday-icon">
-                            ◆
-                        </span>
 
-                        <span>
-                            {formatDate(details.birth_date)}
-                        </span>
-                    </div>
-                )}
+
+
+
+{details.birthDate && (
+    <div className="client-profile-row">
+        <span className="client-birthday-icon">
+            ◆
+        </span>
+
+        <span>
+            {formatBirthday(details.birthDate)}
+        </span>
+    </div>
+)}
             </section>
 
             <section className="client-stats">

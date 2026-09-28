@@ -7,6 +7,7 @@ export interface Reminder {
     phone: string;
     perfume_name: string;
     volume_ml: number;
+    price: number;
     comment: string;
     sale_date: string;
     reminder_at: string;
