@@ -1,0 +1,78 @@
+.employee-page {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 40px 0 60px;
+}
+
+.employee-header h1 {
+    margin: 8px 0;
+    font-family: var(--heading);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.employee-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    font-size: 14px;
+}
+
+.employee-eyebrow {
+    color: var(--gold);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.employee-line {
+    height: 2px;
+    margin: 22px 0 28px;
+    background: var(--gold);
+}
+
+.employee-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.employee-action {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--heading);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.employee-action:hover {
+    border-color: var(--gold);
+}
+
+.employee-action span {
+    color: var(--gold);
+    font-size: 21px;
+}
+
+.employee-action.primary {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: #171717;
+}
+
+.employee-action.primary span {
+    color: #171717;
+}
+
+@media (max-width: 620px) {
+    .employee-actions {
+        grid-template-columns: 1fr;
+    }
+}
