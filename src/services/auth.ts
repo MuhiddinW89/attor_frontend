@@ -27,10 +27,81 @@ interface LoginResponse {
     csrf_token: string;
 }
 
+interface MessageResponse {
+    message: string;
+}
+
+interface VerificationResponse {
+    completion_token: string;
+}
+
 export async function login(email: string, password: string) {
     const response = await api.post<LoginResponse>("/auth/login", {
         email,
         password,
+    });
+    return response.data;
+}
+
+export async function registerOwner(email: string, password: string, turnstileToken: string) {
+    if (!turnstileToken.trim()) {
+        throw new Error("Complete the security check before creating an account.");
+    }
+    const response = await api.post<MessageResponse>("/auth/register", {
+        email,
+        password,
+        turnstile_token: turnstileToken,
+    });
+    return response.data;
+}
+
+export async function verifyOwnerEmail(token: string) {
+    const response = await api.post<VerificationResponse>("/auth/verify-email", {
+        token,
+    });
+    return response.data;
+}
+
+export async function resendVerification(email: string) {
+    const response = await api.post<MessageResponse>("/auth/resend-verification", {
+        email,
+    });
+    return response.data;
+}
+
+export async function completeOwnerRegistration(
+    completionToken: string,
+    storeName: string,
+) {
+    const response = await api.post<MessageResponse>(
+        "/auth/complete-owner-registration",
+        { completion_token: completionToken, store_name: storeName },
+    );
+    return response.data;
+}
+
+export async function requestPasswordReset(email: string) {
+    const response = await api.post<MessageResponse>("/auth/forgot-password", {
+        email,
+    });
+    return response.data;
+}
+
+export async function resetPassword(token: string, password: string) {
+    await api.post("/auth/reset-password", { token, password });
+}
+
+export async function acceptEmployeeInvitation(token: string, password: string) {
+    const response = await api.post<MessageResponse>("/auth/accept-invitation", {
+        token,
+        password,
+    });
+    return response.data;
+}
+
+export async function inviteEmployee(email: string) {
+    const response = await api.post<MessageResponse>("/employees/invitations", {
+        email,
     });
     return response.data;
 }

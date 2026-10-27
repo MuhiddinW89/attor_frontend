@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useAuth } from "../../app/auth-context";
 import { getAuthErrorMessage } from "../../services/auth";
 import { LoginRedirect } from "../../app/protected-route";
+import { Link } from "react-router-dom";
 import "./login.css";
 
 export default function LoginPage() {
@@ -66,6 +67,10 @@ export default function LoginPage() {
                 <button type="submit" disabled={submitting}>
                     {submitting ? "Signing in..." : "Sign in"}
                 </button>
+                <nav className="login-links" aria-label="Account options">
+                    <Link to="/register">Create owner account</Link>
+                    <Link to="/forgot-password">Forgot password?</Link>
+                </nav>
             </form>
         </main>
     );

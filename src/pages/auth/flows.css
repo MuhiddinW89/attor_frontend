@@ -1,0 +1,56 @@
+.auth-workflow-card {
+    gap: 10px;
+}
+
+.auth-workflow-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-workflow-card form > p {
+    margin: 0 0 18px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.auth-workflow-card .auth-hint {
+    margin: -10px 0 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.auth-workflow-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.auth-workflow-links a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.auth-workflow-links a:hover {
+    text-decoration: underline;
+}
+
+.auth-success {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.turnstile-widget {
+    margin: 4px 0 12px;
+}
+
+.turnstile-widget p {
+    margin: 8px 0;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.turnstile-widget button {
+    align-self: flex-start;
+}

@@ -12,6 +12,14 @@ import EmployeeDashboardPage from "../pages/employee/page";
 import LoginPage from "../pages/login/page";
 import EmployeesPage from "../pages/owner/employees";
 import {
+    AcceptInvitationPage,
+    CreateOwnerAccountPage,
+    ForgotPasswordPage,
+    ResendVerificationPage,
+    ResetPasswordPage,
+    VerifyEmailPage,
+} from "../pages/auth/flows";
+import {
     LegacyRoute,
     RequireRole,
     RoleHomeRedirect,
@@ -25,6 +33,30 @@ export const router = createBrowserRouter([
             {
                 path: "login",
                 element: <LoginPage />,
+            },
+            {
+                path: "register",
+                element: <CreateOwnerAccountPage />,
+            },
+            {
+                path: "verify-email",
+                element: <VerifyEmailPage />,
+            },
+            {
+                path: "resend-verification",
+                element: <ResendVerificationPage />,
+            },
+            {
+                path: "forgot-password",
+                element: <ForgotPasswordPage />,
+            },
+            {
+                path: "reset-password",
+                element: <ResetPasswordPage />,
+            },
+            {
+                path: "accept-invitation",
+                element: <AcceptInvitationPage />,
             },
             {
                 path: "owner",

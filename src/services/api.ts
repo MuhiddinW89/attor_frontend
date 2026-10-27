@@ -23,8 +23,12 @@ export function clearCSRFToken() {
     }
 }
 
+const defaultApiUrl = import.meta.env.DEV
+    ? "http://localhost:8080/api/v1"
+    : "https://attor-backend-ho0o.onrender.com/api/v1";
+
 export const api = axios.create({
-    baseURL: "https://attor-backend-ho0o.onrender.com/api/v1",
+    baseURL: import.meta.env.VITE_API_URL || defaultApiUrl,
     withCredentials: true,
 });
 
